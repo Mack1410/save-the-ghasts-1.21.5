@@ -1,0 +1,11 @@
+{
+	"required": true,
+	"package": "roseherald.savetheghasts.mixin",
+	"compatibilityLevel": "JAVA_21",
+	"mixins": [
+		"ExampleMixin"
+	],
+	"injectors": {
+		"defaultRequire": 1
+	}
+}

@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "all": "save-the-ghasts:block/desiccated_sponge"
+  }
+}

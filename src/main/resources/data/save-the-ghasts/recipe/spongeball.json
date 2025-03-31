@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": "save-the-ghasts:desiccated_sponge",
+  "result": {
+    "id": "save-the-ghasts:spongeball",
+    "count": 4
+  }
+}
+

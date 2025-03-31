@@ -1,0 +1,40 @@
+{
+	"schemaVersion": 1,
+	"id": "save-the-ghasts",
+	"version": "${version}",
+	"name": "Save the Ghasts",
+	"description": "Prototype for turning ghasts into dried ghasts instead of outright killing them",
+	"authors": [
+		"Mack1410"
+	],
+	"contact": {
+		"homepage": "https://fabricmc.net/",
+		"sources": "https://github.com/FabricMC/fabric-example-mod"
+	},
+	"license": "CC0-1.0",
+	"icon": "assets/save-the-ghasts/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"roseherald.savetheghasts.SaveTheGhasts"
+		],
+		"fabric-datagen": [
+			"roseherald.savetheghasts.SaveTheGhastsDataGenerator"
+		],
+		"client": [
+			"roseherald.savetheghasts.SaveTheGhastsClient"
+		]
+	},
+	"mixins": [
+		"save-the-ghasts.mixins.json"
+	],
+	"depends": {
+		"fabricloader": ">=0.16.10",
+		"minecraft": "~1.21.5",
+		"java": ">=21",
+		"fabric-api": "*"
+	},
+	"suggests": {
+		"another-mod": "*"
+	}
+}
