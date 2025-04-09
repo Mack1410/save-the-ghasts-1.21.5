@@ -1,10 +1,11 @@
 package roseherald.savetheghasts.entity.custom;
 
+import net.minecraft.block.Blocks;
+import net.minecraft.client.world.ClientWorld;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityStatuses;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.mob.BlazeEntity;
 import net.minecraft.entity.mob.GhastEntity;
 import net.minecraft.entity.projectile.thrown.ThrownItemEntity;
 import net.minecraft.item.Item;
@@ -59,16 +60,24 @@ public class SpongeballProjectileEntity extends ThrownItemEntity {
     protected void onEntityHit(EntityHitResult entityHitResult) {
         super.onEntityHit(entityHitResult);
         Entity entity = entityHitResult.getEntity();
-        int ghastDamage = entity instanceof GhastEntity ? 100 : 0;
+
+        if (!(entity instanceof GhastEntity)) return;
+
+        if (this.getWorld() instanceof ClientWorld clientWorld) {
+            clientWorld.addParticleClient(
+                    ParticleTypes.EXPLOSION,
+                    entity.getX(),
+                    entity.getY()+1,
+                    entity.getZ(),
+                    1,
+                    1,
+                    1);
+        } //just doesnt run half the time how do you actually run code on the client
 
         if (entity.getWorld() instanceof ServerWorld serverWorld) {
-
-            entity.damage(serverWorld, this.getDamageSources().thrown(this, this.getOwner()), ghastDamage);
-
-            if (entity instanceof GhastEntity){
-                entity.dropItem(serverWorld, Items.NETHER_STAR); //REPLACE WITH DRIED GHAST
-                entity.dropItem(serverWorld, Items.FIRE_CHARGE);
-            }
+            entity.dropItem(serverWorld, Blocks.DRIED_GHAST);
+            entity.dropItem(serverWorld, Items.FIRE_CHARGE);
+            entity.discard();
         }
     }
 
